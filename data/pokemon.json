@@ -1,14 +1,14 @@
-data = [
+[
     {
         "name": "pikachu",
         "type": "electric",
-        "caught": True,
+        "caught": true,
         "id": 1
     },
     {
         "name": "squirtle",
         "type": "water",
-        "caught": False,
+        "caught": false,
         "id": 2
     }
 ]
