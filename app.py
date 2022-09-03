@@ -6,13 +6,6 @@ app = Flask(__name__)
 
 collection_name = connection.get_database()
 
-charmnder_data = {
-    "_id": 3,
-    "name": "charmnder",
-    "type": "fire",
-    "caught": True
-}
-
 @app.route("/")
 def get_all_pokemon():
     all_pokemon = collection_name.find()
@@ -52,12 +45,12 @@ def get_pokemon_not_caught():
 
 @app.route("/mark_as_caught/<string:name>", methods=["PUT", "POST"])
 def mark_as_caught(name):
-    pokemon = collection_name.find_one_and_update({'name': name}, {"$set": {'caught': True}})
+    collection_name.find_one_and_update({'name': name}, {"$set": {'caught': True}})
     return 'Pokemon Caught!'
 
 @app.route("/mark_as_released/<string:name>", methods=["PUT", "POST"])
 def mark_as_released(name):
-    pokemon = collection_name.find_one_and_update({'name': name}, {"$set": {'caught': False}})
+    collection_name.find_one_and_update({'name': name}, {"$set": {'caught': False}})
     return 'Pokemon Released'
 
 @app.errorhandler(404)
