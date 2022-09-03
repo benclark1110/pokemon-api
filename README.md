@@ -1,8 +1,10 @@
 # Pokemon API
 
+
 ## Tech Stack:
 ### - Python
 ### - MongoDB Atlas
+
 
 ## HOW TO:
 ### - 'pipenv install' to gather dependencies
