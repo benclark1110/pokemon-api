@@ -30,6 +30,26 @@ def add_pokemon():
     collection_name.insert_one(pokemon.__dict__)
     return 'added'
 
+@app.route("/filter_by_type/<string:type>", methods=["GET"])
+def filter_by_type(type):
+    pokemon = collection_name.find({"type": type})
+    return jsonify([pokemon for pokemon in pokemon])
+
+@app.route("/filter_by_name/<string:name>", methods=["GET"])
+def filter_by_name(name):
+    pokemon = collection_name.find({"name": name})
+    return jsonify([pokemon for pokemon in pokemon])
+
+@app.route("/pokemon_caught", methods=["GET"])
+def filter_by_caught():
+    pokemon = collection_name.find({"caught": True})
+    return jsonify([pokemon for pokemon in pokemon])
+
+@app.route("/pokemon_not_caught", methods=["GET"])
+def filter_by_not_caught():
+    pokemon = collection_name.find({"caught": False})
+    return jsonify([pokemon for pokemon in pokemon])
+
 @app.errorhandler(404)
 def resource_not_found(e):
     """
