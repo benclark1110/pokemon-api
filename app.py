@@ -33,8 +33,8 @@ def filter_by_name(name: str):
     pokemon = pokemon_collection.find({"name": name})
     return jsonify([pokemon for pokemon in pokemon])
 
-@app.route("/get_pokemon_caught", methods=["GET"])
-def get_pokemon_caught():
+@app.route("/get_caught_pokemon", methods=["GET"])
+def get_caught_pokemon():
     pokemon = pokemon_collection.find({"caught": True})
     return jsonify([pokemon for pokemon in pokemon])
 
