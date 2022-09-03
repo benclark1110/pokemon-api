@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify
-import connection
-import model
+import connection, model, datetime
 
 app = Flask(__name__)
 
 pokemon_collection = connection.get_database()
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def get_all_pokemon():
     """
     Returns all pokemon in Pokedex
@@ -34,10 +33,13 @@ def add_pokemon():
         "_id": 99
     }
     """
-    raw_pokemon = request.get_json()
-    pokemon = model.Pokemon(raw_pokemon["_id"], raw_pokemon["name"], raw_pokemon["type"], raw_pokemon["caught"])
-    pokemon_collection.insert_one(pokemon.__dict__)
-    return 'Pokemon added to Pokedex!'
+    try: 
+        raw_pokemon = request.get_json()
+        pokemon = model.Pokemon(raw_pokemon["_id"], raw_pokemon["name"], raw_pokemon["type"], raw_pokemon["caught"])
+        pokemon_collection.insert_one(pokemon.__dict__)
+    except Exception as error:
+        return jsonify(error=str(error))
+    return 'Pokemon successfully added to Pokedex!'
 
 @app.route("/filter_by_type/<string:type>", methods=["GET"])
 def filter_by_type(type: str):
@@ -79,8 +81,8 @@ def mark_as_caught(name: str):
     Marks a pokemon as caught
     Parameters: name(string)
     """
-    pokemon_collection.find_one_and_update({'name': name}, {"$set": {'caught': True}})
-    return 'Pokemon Caught!'
+    pokemon_collection.find_one_and_update({'name': name}, {"$set": {'caught': True, 'lastUpdated': datetime.datetime.now()}})
+    return f'You Caught a {name}!'
 
 @app.route("/mark_as_released/<string:name>", methods=["PUT", "POST"])
 def mark_as_released(name: str):
@@ -88,8 +90,8 @@ def mark_as_released(name: str):
     Marks a pokemon as released
     Parameters: name(string)
     """
-    pokemon_collection.find_one_and_update({'name': name}, {"$set": {'caught': False}})
-    return 'Pokemon Released!'
+    pokemon_collection.find_one_and_update({'name': name}, {"$set": {'caught': False, 'lastUpdated': datetime.datetime.now()}})
+    return f'You Released a {name}.'
 
 @app.errorhandler(404)
 def resource_not_found(e):
