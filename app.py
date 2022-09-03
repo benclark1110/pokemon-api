@@ -106,3 +106,22 @@ def bad_request(e):
     Bad Request Error Handler
     """
     return jsonify(error=str(e)), 400
+
+########### Pagination option ###########
+
+@app.route("/pagination", methods=["GET"])
+def get_some_pokemon():
+    args = request.args
+    skip = args.get('skip')
+    limit = args.get('limit')
+
+    if None not in (skip, limit):
+        all_pokemon = pokemon_collection.find().skip(int(skip)).limit(int(limit))
+    elif skip:
+        all_pokemon = pokemon_collection.find().skip(int(skip))
+    elif limit:
+        all_pokemon = pokemon_collection.find().limit(int(limit))
+    else:
+        all_pokemon = pokemon_collection.find()
+
+    return jsonify([pokemon for pokemon in all_pokemon])
