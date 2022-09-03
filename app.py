@@ -40,15 +40,25 @@ def filter_by_name(name):
     pokemon = collection_name.find({"name": name})
     return jsonify([pokemon for pokemon in pokemon])
 
-@app.route("/pokemon_caught", methods=["GET"])
-def filter_by_caught():
+@app.route("/get_pokemon_caught", methods=["GET"])
+def get_pokemon_caught():
     pokemon = collection_name.find({"caught": True})
     return jsonify([pokemon for pokemon in pokemon])
 
-@app.route("/pokemon_not_caught", methods=["GET"])
-def filter_by_not_caught():
+@app.route("/get_pokemon_not_caught", methods=["GET"])
+def get_pokemon_not_caught():
     pokemon = collection_name.find({"caught": False})
     return jsonify([pokemon for pokemon in pokemon])
+
+@app.route("/mark_as_caught/<string:name>", methods=["PUT", "POST"])
+def mark_as_caught(name):
+    pokemon = collection_name.find_one_and_update({'name': name}, {"$set": {'caught': True}})
+    return 'Pokemon Caught!'
+
+@app.route("/mark_as_released/<string:name>", methods=["PUT", "POST"])
+def mark_as_released(name):
+    pokemon = collection_name.find_one_and_update({'name': name}, {"$set": {'caught': False}})
+    return 'Pokemon Released'
 
 @app.errorhandler(404)
 def resource_not_found(e):
