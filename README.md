@@ -1,6 +1,6 @@
 # Pokemon API
 
-## Tech Stack
+## Tech Stack:
 ### - Python
 ### - MongoDB Atlas
 
