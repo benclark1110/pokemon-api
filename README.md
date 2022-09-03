@@ -2,12 +2,12 @@
 
 
 ## Tech Stack:
-### - Python
-### - MongoDB Atlas
+- Python
+- MongoDB Atlas
 
 
 ## HOW TO:
-### - 'pipenv install' to gather dependencies
-### - 'pipenv shell' to start the virtual environment
-### - 'python3 data/insert_pokemon.py' to load pokemon
-### - 'flask run' to start api
+1. 'pipenv install' to gather dependencies
+2. 'pipenv shell' to start the virtual environment
+3. 'python3 data/insert_pokemon.py' to load pokemon
+4. 'flask run' to start api
