@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Pikachu",
+        "type": "Electric",
+        "caught": true,
+        "_id": 1
+    },
+    {
+        "name": "Squirtle",
+        "type": "Water",
+        "caught": true,
+        "_id": 2
+    },
+    {
+        "name": "Wartortle",
+        "type": "Water",
+        "caught": false,
+        "_id": 3
+    },
+    {
+        "name": "Blastoise",
+        "type": "Water",
+        "caught": false,
+        "_id": 4
+    },
+    {
+        "name": "Bulbasaur",
+        "type": "Grass",
+        "caught": true,
+        "_id": 5
+    },
+    {
+        "name": "Ivysaur",
+        "type": "Grass",
+        "caught": false,
+        "_id": 6
+    },
+    {
+        "name": "Venusaur",
+        "type": "Grass",
+        "caught": false,
+        "_id": 7
+    },
+    {
+        "name": "Charmander",
+        "type": "Fire",
+        "caught": true,
+        "_id": 8
+    },
+    {
+        "name": "Charmeleon",
+        "type": "Fire",
+        "caught": false,
+        "_id": 9
+    },
+    {
+        "name": "Charizard",
+        "type": "Fire",
+        "caught": false,
+        "_id": 10
+    }
+]

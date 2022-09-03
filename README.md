@@ -3,5 +3,5 @@
 # HOW TO:
 # - 'pipenv install' to gather dependencies
 # - 'pipenv shell' to start the virtual environment
-# - 'python3 data/dataload.py' to attempt to load mongodb server
+# - 'python3 data/insert_pokemon.py' to load pokemon
 # - 'flask run' to start api
