@@ -4,7 +4,8 @@
 - Python
 - MongoDB Atlas
 
-## HOW TO:
+## HOW TO (cd into pokemon-api):
+
 1. 'pipenv install' to gather dependencies
 2. 'pipenv shell' to start the virtual environment
 3. 'python3 insert_pokemon.py' to load pokemon
